@@ -1,0 +1,136 @@
+<div class="overflow-x-auto" *ngIf="users$ | async as users">
+  <div class="relative">
+    <ng-container>
+      <loading
+        [bdColor]="'rgba(0,0,0,0.2)'"
+        [size]="'medium'"
+        [color]="'#FFF'"
+        [type]="'ball-8bits'"
+        [fullScreen]="false"
+      ></loading>
+    </ng-container>
+    <app-users-table [isLoading]="isLoading" [users]="users"></app-users-table>
+  </div>
+</div>
+
+<!-- <ng-container *ngIf="loading$ | async; else loaded">
+  <div>Loading...</div>
+</ng-container>
+
+<ng-template #loaded>
+  <ng-container *ngIf="users$ | async as users; else noUsers">
+    <div class="m-3">
+      <div class="mt-3 overflow-x-auto">
+        <table class="table table-compact w-full">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr class="hover" *ngFor="let user of users">
+              <td>{{ user.name }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <button
+                  class="btn btn-outline btn-square btn-xs"
+                  (click)="updateUser(user)"
+                  *ngIf="!user.permissions.is_admin"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    class="inline-block w-4 h-4 stroke-current"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  class="btn btn-outline btn-circle btn-xs"
+                  (click)="deleteUser(user)"
+                  *ngIf="!user.permissions.is_admin"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    class="inline-block w-4 h-4 stroke-current"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noUsers>
+    <div>No users found</div>
+  </ng-template>
+</ng-template>
+<!-- <ng-container *ngIf="users?.length; then list_users; else no_users"></ng-container>
+<ng-template #no_users><div class="m-3">No users to display</div></ng-template>
+<ng-template #list_users>
+  <div class="m-3">
+    <div class="mt-3 overflow-x-auto">
+      <table class="table table-compact w-full">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover" *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <button
+                class="btn btn-outline btn-circle btn-xs"
+                (click)="deleteUser(user)"
+                *ngIf="!user.permissions.is_admin"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  class="inline-block w-4 h-4 stroke-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template> -->

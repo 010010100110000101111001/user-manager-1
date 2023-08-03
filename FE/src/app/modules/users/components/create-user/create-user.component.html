@@ -1,0 +1,92 @@
+<div class="m-3">
+  <div class="mb-3">Create User</div>
+  <div class="mb-2">
+    <form [formGroup]="userForm" (ngSubmit)="createUser()">
+      <div class="mb-2">
+        <input
+          type="text"
+          formControlName="name"
+          placeholder="name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+      <div class="mb-2">
+        <input
+          type="text"
+          formControlName="username"
+          placeholder="username"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+      <div class="mb-2">
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="email"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+      <div class="mb-2">
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-sm">Create User</button>
+      </div>
+    </form>
+  </div>
+
+  <ng-container *ngIf="failure_message">
+    <div class="message mt-3 mb-3 text-red-500">
+      {{ failure_message }}
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="success_message">
+    <div class="message mt-3 mb-3 text-green-500">
+      {{ success_message }}
+    </div>
+  </ng-container>
+
+  <!-- Display validation messages -->
+  <div
+    *ngIf="
+      userForm.controls['name'].invalid && userForm.controls['name'].touched
+    "
+    class="text-red-500"
+  >
+    Name is required.
+  </div>
+  <div
+    *ngIf="
+      userForm.controls['username'].invalid &&
+      userForm.controls['username'].touched
+    "
+    class="text-red-500"
+  >
+    Username is required.
+  </div>
+  <div
+    *ngIf="
+      userForm.controls['email'].invalid && userForm.controls['email'].touched
+    "
+    class="text-red-500"
+  >
+    Email is required and must be a valid email address.
+  </div>
+  <div
+    *ngIf="
+      userForm.controls['password'].invalid &&
+      userForm.controls['password'].touched
+    "
+    class="text-red-500"
+  >
+    Password is required and must be 8-24 characters with at least one lowercase
+    letter, one uppercase letter, one digit, and one special character (!@#$%).
+  </div>
+</div>

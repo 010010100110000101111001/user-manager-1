@@ -1,0 +1,41 @@
+<table class="table w-full table-compact">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Is Super User</th>
+      <th>Is Admin</th>
+      <th>
+        <span>Edit</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.permissions.is_super_user }}</td>
+      <td>{{ user.permissions.is_admin }}</td>
+      <td>
+        <button
+          *ngIf="!user.permissions.is_admin"
+          type="button"
+          class="btn btn-sm btn-outline btn-primary m-2"
+          (click)="updateUser(user._id)"
+        >
+          Update
+        </button>
+        <button
+          *ngIf="!user.permissions.is_admin"
+          type="button"
+          class="btn btn-sm btn-outline btn-secondary"
+          (click)="deleteUser(user.id)"
+          >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
